@@ -109,10 +109,10 @@ function Dashboard() {
 
         try {
             // Post shift data
-            await axios.post('http://localhost:3001/submitShift', shiftData);
+            await axios.post('http://172.16.4.224:3001/submitShift', shiftData);
 
             // Post corrections data
-            await axios.post('http://localhost:3001/submitCorrections', submissionData);
+            await axios.post('http://172.16.4.224:3001/submitCorrections', submissionData);
 
             // Reset state after successful submission
             setShiftData({ shift: '', name: '', handed_over_to: '', completed_comments: '', pending_comments: '' });
@@ -141,7 +141,7 @@ function Dashboard() {
 
 
     useEffect(() => {
-        fetch('http://localhost:3001/shiftData')
+        fetch('http://172.16.4.224:3001/shiftData')
             .then((response) => response.json())
             .then((data) => setShiftDatas(data))
             .catch((error) => console.error('Error fetching data:', error));
@@ -151,7 +151,7 @@ function Dashboard() {
     useEffect(() => {
         const fetchCorrections = async () => {
             try {
-                const response = await axios.get('http://localhost:3001/get-corrections'); // Adjust this to your API endpoint
+                const response = await axios.get('http://172.16.4.224:3001/get-corrections'); // Adjust this to your API endpoint
                 setCorrections(response.data);
             } catch (error) {
                 console.error('Error fetching corrections:', error);
