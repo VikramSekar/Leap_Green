@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/Leap_Green/static/css/main.06805dd8.css",
-    "main.js": "/Leap_Green/static/js/main.97d4eb37.js",
+    "main.css": "/Leap_Green/static/css/main.f4e93f94.css",
+    "main.js": "/Leap_Green/static/js/main.e24b53c2.js",
     "static/js/453.0c409078.chunk.js": "/Leap_Green/static/js/453.0c409078.chunk.js",
     "static/media/logo1.png": "/Leap_Green/static/media/logo1.5af076331660875f83b7.png",
     "static/media/wingbg1.jpg": "/Leap_Green/static/media/wingbg1.644c6460248405b05503.jpg",
     "static/media/logo.png": "/Leap_Green/static/media/logo.11799a33127d453f8634.png",
     "index.html": "/Leap_Green/index.html",
-    "main.06805dd8.css.map": "/Leap_Green/static/css/main.06805dd8.css.map",
-    "main.97d4eb37.js.map": "/Leap_Green/static/js/main.97d4eb37.js.map",
+    "main.f4e93f94.css.map": "/Leap_Green/static/css/main.f4e93f94.css.map",
+    "main.e24b53c2.js.map": "/Leap_Green/static/js/main.e24b53c2.js.map",
     "453.0c409078.chunk.js.map": "/Leap_Green/static/js/453.0c409078.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.06805dd8.css",
-    "static/js/main.97d4eb37.js"
+    "static/css/main.f4e93f94.css",
+    "static/js/main.e24b53c2.js"
   ]
 }
