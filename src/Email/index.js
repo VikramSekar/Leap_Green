@@ -32,7 +32,7 @@ function Email() {
     useEffect(() => {
         const fetchEmails = async () => {
             try {
-                const response = await axios.get('http://localhost:3001/fetch-emails');
+                const response = await axios.get('http://localhost:5000/fetch-emails');
                 const fetchedEmails = response.data;
 
                 // Update formData based on verification status from backend
@@ -64,7 +64,7 @@ function Email() {
         if (!isConfirmed) return;
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:3001/save-emails', formData);
+            const response = await axios.post('http://localhost:5000/save-emails', formData);
             if (response.status === 200) {
                 alert("Emails saved successfully!");
                 window.location.reload();

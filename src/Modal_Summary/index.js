@@ -41,7 +41,7 @@ const NWPModelTable = () => {
     // Fetch data when the component mounts
 
     useEffect(() => {
-        axios.get('http://localhost:3001/api/fetch-models')
+        axios.get('http://localhost:5000/api/fetch-models')
             .then(response => {
                 setFetchModels(response.data);
             })
@@ -169,7 +169,7 @@ const NWPModelTable = () => {
         }));
 
         try {
-            const response = await fetch('http://localhost:3001/api/submit', {  // Adjust this endpoint
+            const response = await fetch('http://localhost:5000/api/submit', {  // Adjust this endpoint
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

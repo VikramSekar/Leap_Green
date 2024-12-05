@@ -27,7 +27,7 @@ function ShiftC() {
     const handleSubmit5 = async (e) => {
         try {
             // Make the POST request
-            const response = await axios.post('http://localhost:3001/shiftC_remarks', {
+            const response = await axios.post('http://localhost:5000/shiftC_remarks', {
                 work_description: workDescription,
                 work_status: workStatus,
             });
@@ -263,7 +263,7 @@ function ShiftC() {
         ];
 
         try {
-            await axios.post('http://localhost:3001/shiftC_forecaststatus', payload);
+            await axios.post('http://localhost:5000/shiftC_forecaststatus', payload);
         } catch (error) {
             console.error('Error submitting data:', error);
             alert('Failed to submit data.');
@@ -273,7 +273,7 @@ function ShiftC() {
     useEffect(() => {
         const fetchForecastData = async () => {
             try {
-                const response = await axios.get('http://localhost:3001/shiftC_forecaststatus/last');
+                const response = await axios.get('http://localhost:5000/shiftC_forecaststatus/last');
                 // Map the fetched data to the state for checkboxes
                 const newStatusData = { ...statusData };
 
@@ -328,7 +328,7 @@ function ShiftC() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get("http://localhost:3001/shiftC_commonworkslast");
+                const response = await axios.get("http://localhost:5000/shiftC_commonworkslast");
                 setData(response.data);  // Directly set the data without modification
             } catch (error) {
                 console.error("Error fetching data:", error);
@@ -340,7 +340,7 @@ function ShiftC() {
 
     useEffect(() => {
         // Fetch data from the backend
-        fetch('http://localhost:3001/shiftB_remarkslast') // Assuming you have a GET route to fetch the data
+        fetch('http://localhost:5000/shiftB_remarkslast') // Assuming you have a GET route to fetch the data
             .then((response) => response.json())
             .then((fetchedData) => {
                 setRemarksData(fetchedData); // Store the fetched data in state
