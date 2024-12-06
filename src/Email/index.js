@@ -32,7 +32,7 @@ function Email() {
     useEffect(() => {
         const fetchEmails = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/fetch-emails');
+                const response = await axios.get('http://172.16.4.224:5000/fetch-emails');
                 const fetchedEmails = response.data;
 
                 // Update formData based on verification status from backend
