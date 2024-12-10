@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../Header';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import { FaCheck, FaTimes } from 'react-icons/fa'; // Example using react-icons
 
 function Email() {
@@ -20,6 +21,12 @@ function Email() {
 
     const [formData, setFormData] = useState(initialFormData);
     const [emails, setEmails] = useState([]);
+
+    const navigate = useNavigate();
+
+    const reloadData = () => {
+        navigate(0); // Navigate to the same path
+    };
 
     // Handle input change for form data
     const handleChange = (index, field, value) => {
@@ -58,6 +65,8 @@ function Email() {
         fetchEmails();
     }, []);
 
+
+
     // Handle form submission
     const handleSubmit = async (e) => {
         const isConfirmed = window.confirm("Are you sure you want to insert the record?");
@@ -67,7 +76,8 @@ function Email() {
             const response = await axios.post('http://localhost:5001/save-emails', formData);
             if (response.status === 200) {
                 alert("Emails saved successfully!");
-                window.location.reload();
+                // window.location.reload();
+                reloadData();
                 setFormData(initialFormData); // Reset form data
             } else {
                 alert("Error saving emails.");
@@ -167,7 +177,7 @@ function Email() {
                                     </table>
 
                                     <div className='text-end mb-4 me-4'>
-                                        <button className="btn btn-success px-5 fs-5">Save Emails</button>
+                                        <button  className="btn btn-success px-5 fs-5">Save Emails</button>
                                     </div>
                                 </form>
                             </div>
