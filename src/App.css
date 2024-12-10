@@ -24,6 +24,10 @@
   color: #fff !important;
 }
 
+.cursornone{
+  cursor: none!important;
+}
+
 
 @media (max-width: 768px) {
   .table-responsive {

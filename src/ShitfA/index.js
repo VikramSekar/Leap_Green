@@ -317,7 +317,7 @@ function ShiftA() {
     const handleSubmit4 = async (e) => {
         try {
             // Make the POST request
-            const response = await axios.post('http://localhost:5000/shiftA_remarks', {
+            const response = await axios.post('http://localhost:5001/shiftA_remarks', {
                 work_description: workDescription,
                 work_status: workStatus,
             });
@@ -405,7 +405,7 @@ function ShiftA() {
     // Ensure data is valid and contains the necessary fields before setting it.
     useEffect(() => {
         // Fetch the last submitted data on component mount
-        axios.get('http://localhost:5000/shiftA_preworkstatuslast')
+        axios.get('http://localhost:5001/shiftA_preworkstatuslast')
             .then(response => {
                 // Validate data before setting it
                 if (Array.isArray(response.data) && response.data.length > 0) {
@@ -431,7 +431,7 @@ function ShiftA() {
 
     // Submit the updated data to the backend
     const handleSubmit = () => {
-        axios.post('http://localhost:5000/shiftA_preworkstatus', data)
+        axios.post('http://localhost:5001/shiftA_preworkstatus', data)
             .then(response => {
                 console.log('Data submitted successfully!');
             })
@@ -560,7 +560,7 @@ function ShiftA() {
     //         .catch(error => console.error('Error fetching data:', error));
     // }, []);
     useEffect(() => {
-        axios.get('http://localhost:5000/shiftA_forecastlast')
+        axios.get('http://localhost:5001/shiftA_forecastlast')
             .then(response => {
                 const forecastEntries = response.data; // Fetch all rows
                 const updatedForecastData = { ...forecastData }; // Clone initial state
@@ -640,7 +640,7 @@ function ShiftA() {
 
 
     const handleSubmit1 = () => {
-        axios.post('http://localhost:5000/shiftA_forecast', forecastData)
+        axios.post('http://localhost:5001/shiftA_forecast', forecastData)
             .then(response => {
                 console.log('Data saved successfully');
             })
@@ -772,7 +772,7 @@ function ShiftA() {
     const [reportsData, setReportsData] = useState([]);
     useEffect(() => {
         axios
-            .get('http://localhost:5000/shiftA_reportlast')
+            .get('http://localhost:5001/shiftA_reportlast')
             .then(response => {
                 const fetchedData = response.data.map(report => ({
                     reportName: report.report_name || '',
@@ -829,7 +829,7 @@ function ShiftA() {
         }));
 
         axios
-            .post('http://localhost:5000/shiftA_reports', formattedData)
+            .post('http://localhost:5001/shiftA_reports', formattedData)
             .then(() => {
             })
             .catch(error => {
@@ -900,7 +900,7 @@ function ShiftA() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get("http://localhost:5000/shiftA_commonworkslast");
+                const response = await axios.get("http://localhost:5001/shiftA_commonworkslast");
                 const previousData = response.data;
 
                 // Pre-fill checkboxes based on previous data
@@ -947,7 +947,7 @@ function ShiftA() {
     // Submit handler remains unchanged
     const handleSubmit3 = async () => {
         try {
-            await axios.post("http://localhost:5000/shiftA_commonworks", checkboxes);
+            await axios.post("http://localhost:5001/shiftA_commonworks", checkboxes);
         } catch (error) {
             console.error("Error submitting data:", error);
             alert("Error submitting data");
@@ -958,7 +958,7 @@ function ShiftA() {
     const [remarksData, setRemarksData] = useState([]);
     useEffect(() => {
         // Fetch data from the backend
-        fetch('http://localhost:5000/shiftC_remarkslast') // Assuming you have a GET route to fetch the data
+        fetch('http://localhost:5001/shiftC_remarkslast') // Assuming you have a GET route to fetch the data
             .then((response) => response.json())
             .then((fetchedData) => {
                 setRemarksData(fetchedData); // Store the fetched data in state
@@ -1550,8 +1550,8 @@ function ShiftA() {
                     </div>
                 </div> */}
 
-                <div className='row d-flex justify-content-center'>
-                    <div className='col-md-12'>
+                <div className='row border m-1'>
+                    <div className='col-md-8 m-1'>
                         <div className="table-responsive">
                             <table className="table table-bordered">
                                 <thead>

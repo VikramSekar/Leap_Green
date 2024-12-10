@@ -22,7 +22,7 @@ function Header() {
         <>
             <nav class="navbar navbar-expand-lg navbar-light bg-light border border-success rounded shadow-sm bg-secondary">
                 <div class="container-fluid">
-                    <button class="navbar-brand bg-secondary border rounded p-2 shadow-sm" href="#">
+                    <button class="navbar-brand bg-secondary border rounded p-2 shadow-sm cursornone" href="#">
                         <img src={logo} alt="" width="100%" height="60" class="d-inline-block align-text-top" />
                     </button>
                     <button class="navbar-toggler mx-auto mt-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

@@ -18,47 +18,22 @@ import { Link } from 'react-router-dom';
 
 
 function Pending_Works() {
-    const [models, setModels] = useState([
-        { modelName: 'ARPEGE 25 & ICON 25', utcUpdate: '00', numOfDays: '4 & 8', numOfFiles: '2', d: false, e: false, fg: false, pt: false, remarks: '' },
-        { modelName: 'ARPEGE 25 & ICON 25', utcUpdate: '12', numOfDays: '4 & 8', numOfFiles: '2', d: false, e: false, fg: false, pt: false, remarks: '' },
-        { modelName: 'GEM 15km', utcUpdate: '00', numOfDays: '10', numOfFiles: '1539', d: false, e: false, fg: false, pt: false, remarks: '' },
-        { modelName: 'GEM 15km', utcUpdate: '12', numOfDays: '10', numOfFiles: '1539', d: false, e: false, fg: false, pt: false, remarks: '' },
-        { modelName: 'GFS 25km', utcUpdate: '00', numOfDays: '10', numOfFiles: '213', d: false, e: false, fg: false, pt: false, remarks: '' },
-        { modelName: 'GFS 25km', utcUpdate: '06', numOfDays: '10', numOfFiles: '213', d: false, e: false, fg: false, pt: false, remarks: '' },
-        { modelName: 'GFS 25km', utcUpdate: '12', numOfDays: '10', numOfFiles: '213', d: false, e: false, fg: false, pt: false, remarks: '' },
-        { modelName: 'GFS 25km', utcUpdate: '18', numOfDays: '10', numOfFiles: '213', d: false, e: false, fg: false, pt: false, remarks: '' },
-        { modelName: 'ICON 13', utcUpdate: '00', numOfDays: '8', numOfFiles: '8', d: false, e: false, fg: false, pt: false, remarks: '' },
-        { modelName: 'ICON 13', utcUpdate: '06', numOfDays: '8', numOfFiles: '8', d: false, e: false, fg: false, pt: false, remarks: '' },
-        { modelName: 'ICON 13', utcUpdate: '12', numOfDays: '8', numOfFiles: '8', d: false, e: false, fg: false, pt: false, remarks: '' },
-        { modelName: 'ICON 13', utcUpdate: '18', numOfDays: '8', numOfFiles: '8', d: false, e: false, fg: false, pt: false, remarks: '' },
-        { modelName: 'ECMRWF 09km 10km 100km', utcUpdate: '00', numOfDays: '2', numOfFiles: '23', d: false, e: false, fg: false, pt: false, remarks: '' },
-        { modelName: 'ECMRWF 09km 10km 100km', utcUpdate: '06', numOfDays: '2', numOfFiles: '23', d: false, e: false, fg: false, pt: false, remarks: '' },
-        { modelName: 'ECMRWF 09km 10km 100km', utcUpdate: '12', numOfDays: '2', numOfFiles: '23', d: false, e: false, fg: false, pt: false, remarks: '' },
-        { modelName: 'ECMRWF 09km 10km 100km', utcUpdate: '18', numOfDays: '2', numOfFiles: '23', d: false, e: false, fg: false, pt: false, remarks: '' },
-        { modelName: 'Meteoblue Basic', utcUpdate: '05', numOfDays: '7', numOfFiles: '1', d: false, e: false, fg: false, pt: false, remarks: '' },
-        { modelName: 'Meteoblue Basic', utcUpdate: '16', numOfDays: '7', numOfFiles: '1', d: false, e: false, fg: false, pt: false, remarks: '' },
-        { modelName: 'Meteoblue Basic 80mm', utcUpdate: '05', numOfDays: '7', numOfFiles: '1', d: false, e: false, fg: false, pt: false, remarks: '' },
-        { modelName: 'Meteoblue Basic 80mm', utcUpdate: '16', numOfDays: '7', numOfFiles: '1', d: false, e: false, fg: false, pt: false, remarks: '' },
-        { modelName: 'Meteoblue Multi Model', utcUpdate: '00', numOfDays: '7', numOfFiles: '3', d: false, e: false, fg: false, pt: false, remarks: '' },
-        { modelName: 'Meteoblue Multi Model', utcUpdate: '12', numOfDays: '7', numOfFiles: '3', d: false, e: false, fg: false, pt: false, remarks: '' },
-    ]);
 
-    const [fetchmodels, setFetchModels] = useState([]);
 
-    useEffect(() => {
-        axios.get('http://localhost:3001/api/fetch-models')
-            .then(response => {
-                setFetchModels(response.data);
-            })
-            .catch(error => {
-                console.error('Error fetching models:', error);
-            });
-    }, []);
+    const [selectedDate, setSelectedDate] = useState('');
+
+    // Filter data by selected date
+    const filterByDate = (entries) => {
+        if (!selectedDate) return entries; // Return all if no date selected
+        return entries.filter(entry =>
+            new Date(entry.created_at).toISOString().slice(0, 10) === selectedDate
+        );
+    };
 
     const [data, setData] = useState([]);
     useEffect(() => {
         // Fetch the last submitted data on component mount
-        axios.get('http://localhost:3001/shiftA_preworkstatuslast')
+        axios.get('http://localhost:5001/shiftA_preworkstatuslast')
             .then(response => {
                 setData(response.data); // Populate the table with the last entry
             })
@@ -68,43 +43,25 @@ function Pending_Works() {
     const [preForecast, setPreForecast] = useState([]);
     useEffect(() => {
         // Fetch data when the component mounts
-        axios.get('http://localhost:3001/shiftA_forecastlast')
+        axios.get('http://localhost:5001/shiftA_forecastlast')
             .then(response => setPreForecast(response.data))
             .catch(error => console.error('Error fetching data:', error));
     }, []);
 
-
     const [preReport, setPreReport] = useState([]);
     useEffect(() => {
         // Fetch data when the component mounts
-        axios.get('http://localhost:3001/shiftA_reportlast')
+        axios.get('http://localhost:5001/shiftA_reportlast')
             .then(response => setPreReport(response.data))
             .catch(error => console.error('Error fetching data:', error));
     }, []);
 
 
-    const [preCommonWork, setpreCommonWork] = useState([]);
-
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get("http://localhost:3001/shiftA_commonworkslast");
-                setpreCommonWork(response.data);  // Directly set the data without modification
-            } catch (error) {
-                console.error("Error fetching data:", error);
-            }
-        };
-
-        fetchData();
-    }, []);
-
-
     const [forecasts, setForecasts] = useState([]);
-
     useEffect(() => {
         const fetchForecasts = async () => {
             try {
-                const response = await axios.get('http://localhost:3001/shiftB_forecastlast');
+                const response = await axios.get('http://localhost:5001/shiftB_forecastlast');
                 setForecasts(response.data);
             } catch (error) {
                 console.error('Error fetching forecasts:', error);
@@ -114,43 +71,14 @@ function Pending_Works() {
         fetchForecasts();
     }, []);
 
-
     const [forecastDataFetch, setForecastDataFetch] = useState([]);
     useEffect(() => {
         // Fetch data from the API
-        fetch('http://localhost:3001/shiftB_demandforecastlast')
+        fetch('http://localhost:5001/shiftB_demandforecastlast')
             .then(response => response.json())
             .then(data => setForecastDataFetch(data))
             .catch(error => console.error('Error fetching forecast data:', error));
     }, []);
-
-    // const [tableData, setTableData] = useState([]);
-    // useEffect(() => {
-    //     fetch('http://localhost:3001/shiftB_solarforecastlast')
-    //         .then(response => response.json())
-    //         .then(fetchedTableData => setTableData(fetchedTableData))
-    //         .catch(error => console.error('Error fetching data:', error));
-    // }, []);
-
-    // const [solarForecast, setSolarForecast] = useState({
-    //     watson: false,
-    //     brookfields: false,
-    //     brookfieldsmail: false,
-    //     accuracyReport: false,
-    //     solarDsmReport: false,
-    //     actualUpdated: false,
-    //     actualNotUpdated: false,
-    // });
-    // useEffect(() => {
-    //     // Fetch the previous entry for solar forecast
-    //     fetch('http://localhost:3001/shiftB_solarforecastlast')
-    //         .then(response => response.json())
-    //         .then(data => {
-    //             // Set the fetched data to solarForecast state
-    //             setSolarForecast(data);
-    //         })
-    //         .catch(error => console.error('Error fetching data:', error));
-    // }, []);
 
     const [solarForecast, setSolarForecast] = useState({
         watson: false,
@@ -161,10 +89,9 @@ function Pending_Works() {
         actualUpdated: false,
         actualNotUpdated: false,
     });
-
     useEffect(() => {
         // Fetch the previous entry for solar forecast
-        fetch('http://localhost:3001/shiftB_solarforecastlast')
+        fetch('http://localhost:5001/shiftB_solarforecastlast')
             .then(response => response.json())
             .then(data => {
                 // Set the fetched data to solarForecast state
@@ -173,52 +100,20 @@ function Pending_Works() {
             .catch(error => console.error('Error fetching data:', error));
     }, []);
 
-
-    const [preCommonWorkb, setpreCommonWorkb] = useState([]);
-
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get("http://localhost:3001/shiftB_commonworkslast");
-                setpreCommonWorkb(response.data);  // Directly set the data without modification
-            } catch (error) {
-                console.error("Error fetching data:", error);
-            }
-        };
-
-        fetchData();
-    }, []);
-
-
     const [forecastData, setForecastData] = useState([]);
-
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get("http://localhost:3001/shiftC_forecaststatus/last");
+                const response = await axios.get("http://localhost:5001/shiftC_forecaststatus/last");
                 setForecastData(response.data);  // Directly set the data without modification
             } catch (error) {
                 console.error("Error fetching data:", error);
             }
         };
-
         fetchData();
     }, []);
 
-    const [preCommonWorkc, setpreCommonWorkc] = useState([]);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get("http://localhost:3001/shiftC_commonworkslast");
-                setpreCommonWorkc(response.data);  // Directly set the data without modification
-            } catch (error) {
-                console.error("Error fetching data:", error);
-            }
-        };
-
-        fetchData();
-    }, []);
 
 
     return (
@@ -232,87 +127,17 @@ function Pending_Works() {
                         </div>
                     </div>
 
-                    {/* NWP Models */}
-                    <div className='row d-flex justify-content-center mt-5'>
-                        <div className='col-md-12 mt-4 bg-white p-2 rounded'>
-                            <div className='table-responsive'>
-                                <table className="table table-bordered table-striped">
-                                    <thead className="table-light">
-                                        <tr>
-                                            <th className='bg-danger fs-4 whitetext' colSpan={9}><Link to={"/Model_Summary"} className='border border-2 rounded p-2 text-white'>NWP Models</Link> Pending Works Model Summary</th>
-                                        </tr>
-                                        <tr className='position'>
-                                            <th>Model Name</th>
-                                            <th>UTC Update</th>
-                                            <th className='d-none'>D</th>
-                                            <th className='d-none'>E</th>
-                                            <th className='d-none'>FG</th>
-                                            <th className='d-none'>FT</th>
-                                            {/* <th>Shift</th> */}
-
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {fetchmodels
-                                            .filter(
-                                                (fetching) =>
-                                                    fetching.d !== 1 || fetching.e !== 1 || fetching.fg !== 1 || fetching.pt !== 1
-                                            )
-                                            .map((fetching, index, array) => {
-                                                // Determine if this is the first occurrence of the current modelName
-                                                const isFirstOccurrence =
-                                                    index === 0 || array[index - 1].modelName !== fetching.modelName;
-
-                                                // Calculate rowSpan for the current modelName
-                                                const rowSpan = array.filter((m) => m.modelName === fetching.modelName).length;
-
-                                                return (
-                                                    <tr key={index}>
-                                                        {/* Render modelName only for the first occurrence */}
-                                                        {isFirstOccurrence && (
-                                                            <td rowSpan={rowSpan}>{fetching.modelName}</td>
-                                                        )}
-                                                        <td>{fetching.utcUpdate}</td>
-                                                        <td className="d-none">
-                                                            {fetching.d === 1 ? (
-                                                                <FaCheck className="textsuccess fs-4" />
-                                                            ) : (
-                                                                <FaTimes className="textdanger fs-4" />
-                                                            )}
-                                                        </td>
-                                                        <td className="d-none">
-                                                            {fetching.e === 1 ? (
-                                                                <FaCheck className="textsuccess fs-4" />
-                                                            ) : (
-                                                                <FaTimes className="textdanger fs-4" />
-                                                            )}
-                                                        </td>
-                                                        <td className="d-none">
-                                                            {fetching.fg === 1 ? (
-                                                                <FaCheck className="textsuccess fs-4" />
-                                                            ) : (
-                                                                <FaTimes className="textdanger fs-4" />
-                                                            )}
-                                                        </td>
-                                                        <td className="d-none">
-                                                            {fetching.pt === 1 ? (
-                                                                <FaCheck className="textsuccess fs-4" />
-                                                            ) : (
-                                                                <FaTimes className="textdanger fs-4" />
-                                                            )}
-                                                        </td>
-                                                        {/* <td>{fetching.remarks}</td> */}
-                                                    </tr>
-                                                );
-                                            })}
-                                    </tbody>
-
-                                </table>
-
-                            </div>
+                    <div className='row d-flex justify-content-end'>
+                        <div className='col-md-2'>
+                            <input
+                                type="date"
+                                className="form-control border border-2 border-warning shadow-sm"
+                                value={selectedDate}
+                                onChange={(e) => setSelectedDate(e.target.value)}
+                                max={new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString().split('T')[0]}
+                            />
                         </div>
                     </div>
-                    {/* NWP Models */}
 
                     {/* ShiftA */}
                     <div className='row d-flex justify-content-center'>
@@ -327,20 +152,17 @@ function Pending_Works() {
                                             <th scope="col">Operations</th>
                                             <th scope="col">TN</th>
                                             <th scope="col">RJ</th>
-                                            {/* <th scope="col">MP</th> */}
-                                            {/* <th scope="col">MH</th> */}
+
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {data
+                                        {filterByDate(data)
                                             .filter(row => row.TN !== 1 || row.RJ !== 1) // Filter rows with any unchecked value
                                             .map((row, index) => (
                                                 <tr key={index}>
                                                     <td>{row.operation}</td>
                                                     <td>{row.TN === 1 ? <FaCheck className="textsuccess fs-4" /> : <FaTimes className="textdanger fs-4" />}</td>
                                                     <td>{row.RJ === 1 ? <FaCheck className="textsuccess fs-4" /> : <FaTimes className="textdanger fs-4" />}</td>
-                                                    {/* <td>{row.MP === 1 ? <FaCheck className="textsuccess fs-4" /> : <FaTimes className="textdanger fs-4" />}</td> */}
-                                                    {/* <td>{row.MH === 1 ? <FaCheck className="textsuccess fs-4" /> : <FaTimes className="textdanger fs-4" />}</td> */}
                                                 </tr>
                                             ))}
                                     </tbody>
@@ -350,7 +172,6 @@ function Pending_Works() {
                             </div>
                         </div>
                     </div>
-
                     <div className='row d-flex justify-content-center'>
                         <div className='col-md-12 mt-4 p-2 rounded bg-white'>
                             <div className='table-responsive'>
@@ -372,7 +193,7 @@ function Pending_Works() {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {preForecast.filter(forecast => forecast.our_group !== 1 || forecast.ldc !== 1 || forecast.mail !== 1 || forecast.main_group !== 1 || forecast.tangedco !== 1 || forecast.teca !== 1 || forecast.tn_15_days !== 1 || forecast.rj_15_days !== 1)
+                                        {filterByDate(preForecast).filter(forecast => forecast.our_group !== 1 || forecast.ldc !== 1 || forecast.mail !== 1 || forecast.main_group !== 1 || forecast.tangedco !== 1 || forecast.teca !== 1 || forecast.tn_15_days !== 1 || forecast.rj_15_days !== 1)
                                             .map((forecast, index) => (
                                                 <tr key={index}>
                                                     <td>{forecast.forecast_type}</td>
@@ -448,7 +269,6 @@ function Pending_Works() {
                             </div>
                         </div>
                     </div>
-
                     <div className='row d-flex justify-content-center'>
                         <div className='col-md-12 mt-4 p-2 rounded bg-white'>
                             <div className='table-responsive'>
@@ -460,107 +280,20 @@ function Pending_Works() {
                                         <tr>
                                             <th scope="col">Reports Name</th>
                                             <th scope="col">TN</th>
-                                            {/* <th scope="col">RJ</th> */}
-                                            {/* <th scope="col">MP</th> */}
-                                            {/* <th scope="col">MH</th> */}
+
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {preReport.filter(report => report.TN !== 1)
+                                        {filterByDate(preReport).filter(report => report.TN !== 1)
                                             .map((report, index) => (
                                                 <tr key={index}>
                                                     <td>{report.report_name}</td>
                                                     <td>{report.TN == 1 ? <FaCheck className='textsuccess fs-4' /> : <FaTimes className='textdanger fs-4' />}</td>
-                                                    {/* <td>{report.RJ == 1 ? <FaCheck className='textsuccess fs-4' /> : <FaTimes className='textdanger fs-4' />}</td> */}
-                                                    {/* <td>{report.MP == 1 ? <FaCheck className='textsuccess fs-4' /> : <FaTimes className='textdanger fs-4' />}</td> */}
-                                                    {/* <td>{report.MH == 1 ? <FaCheck className='textsuccess fs-4' /> : <FaTimes className='textdanger fs-4' />}</td> */}
                                                 </tr>
                                             ))}
                                     </tbody>
                                 </table>
                             </div>
-                        </div>
-                    </div>
-
-                    <div className="row">
-                        <div className='col-md-12 mt-4 rounded bg-white p-2'>
-                            <table className="table table-bordered mt-5">
-                                <thead>
-                                    <tr className='bg-danger whitetext'>
-                                        <th className='fs-3 text-start' colSpan={6} scope="col"><Link to={"/ShiftA"} className='border border-2 rounded p-2 text-white'>Shift_A</Link> Previous Common Works Status</th>
-                                    </tr>
-                                    <tr>
-                                        <th>Operations</th>
-                                        <th>TN</th>
-                                        <th>RJ</th>
-                                        <th>MP</th>
-                                        <th>MH</th>
-                                        {/* <th>Date</th> */}
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {[
-                                        ...preCommonWork.slice(0, 1),
-                                        {
-                                            operation: "Nowcast Timing",
-                                            TN: "7:00 Hrs",
-                                            RJ: "10:00 Hrs",
-                                            MP: "13:00 Hrs",
-                                            MH: "N/A",
-                                            created_at: new Date(),
-                                        },
-                                        ...preCommonWork.slice(1).filter(
-                                            item =>
-                                                item.TN !== 1 ||
-                                                item.RJ !== 1 ||
-                                                item.MP !== 1 ||
-                                                item.MH !== 1
-                                        ), // Filter rows with at least one unchecked value
-                                    ].map((item, index) => (
-                                        <tr key={index}>
-                                            <td>{item.operation}</td>
-                                            <td>
-                                                {item.TN === 1 ? (
-                                                    <FaCheck className="textsuccess fs-4" />
-                                                ) : item.TN === 0 ? (
-                                                    <FaTimes className="textdanger fs-4" />
-                                                ) : (
-                                                    item.TN
-                                                )}
-                                            </td>
-                                            <td>
-                                                {item.RJ === 1 ? (
-                                                    <FaCheck className="textsuccess fs-4" />
-                                                ) : item.RJ === 0 ? (
-                                                    <FaTimes className="textdanger fs-4" />
-                                                ) : (
-                                                    item.RJ
-                                                )}
-                                            </td>
-                                            <td>
-                                                {item.MP === 1 ? (
-                                                    <FaCheck className="textsuccess fs-4" />
-                                                ) : item.MP === 0 ? (
-                                                    <FaTimes className="textdanger fs-4" />
-                                                ) : (
-                                                    item.MP
-                                                )}
-                                            </td>
-                                            <td>
-                                                {item.MH === 1 ? (
-                                                    <FaCheck className="textsuccess fs-4" />
-                                                ) : item.MH === 0 ? (
-                                                    <FaTimes className="textdanger fs-4" />
-                                                ) : (
-                                                    item.MH
-                                                )}
-                                            </td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-
-
-                            </table>
                         </div>
                     </div>
                     {/* ShiftA */}
@@ -588,7 +321,7 @@ function Pending_Works() {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {forecasts.filter(forecast => forecast.our_group !== 1 || forecast.ldc !== 1 || forecast.mail !== 1 || forecast.main_group !== 1 || forecast.tangedco !== 1 || forecast.teca !== 1 || forecast.tn_15_days !== 1 || forecast.rj_15_days !== 1)
+                                        {filterByDate(forecasts).filter(forecast => forecast.our_group !== 1 || forecast.ldc !== 1 || forecast.mail !== 1 || forecast.main_group !== 1 || forecast.tangedco !== 1 || forecast.teca !== 1 || forecast.tn_15_days !== 1 || forecast.rj_15_days !== 1)
                                             .map((forecast) => (
                                                 <tr key={forecast.id}>
                                                     <td>{forecast.forecast_type}</td>
@@ -697,60 +430,49 @@ function Pending_Works() {
                                                 <tr key={index}>
                                                     <td>{row.forecast_type}</td>
                                                     <td>
-                                                        {row.tn == 1 ? (
-                                                            <FaCheck className='textsuccess fs-4' />
-                                                        ) : row.tn == 0 ? (
-                                                            <FaTimes className='textdanger fs-4' />
-                                                        ) : (
-                                                            '-'
-                                                        )}
+                                                        {row.tn === null
+                                                            ? "-"
+                                                            : row.tn === 1
+                                                                ? <FaCheck className="textsuccess fs-4" />
+                                                                : <FaTimes className="textdanger fs-4" />}
                                                     </td>
                                                     <td>
-                                                        {row.our_group == 1 ? (
-                                                            <FaCheck className='textsuccess fs-4' />
-                                                        ) : row.our_group == 0 ? (
-                                                            <FaTimes className='textdanger fs-4' />
-                                                        ) : (
-                                                            '-'
-                                                        )}
+                                                        {row.our_group === null
+                                                            ? "-"
+                                                            : row.our_group === 1
+                                                                ? <FaCheck className="textsuccess fs-4" />
+                                                                : <FaTimes className="textdanger fs-4" />}
                                                     </td>
                                                     <td>
-                                                        {row.main_group == 1 ? (
-                                                            <FaCheck className='textsuccess fs-4' />
-                                                        ) : row.main_group == 0 ? (
-                                                            <FaTimes className='textdanger fs-4' />
-                                                        ) : (
-                                                            '-'
-                                                        )}
+                                                        {row.main_group === null
+                                                            ? "-"
+                                                            : row.main_group === 1
+                                                                ? <FaCheck className="textsuccess fs-4" />
+                                                                : <FaTimes className="textdanger fs-4" />}
                                                     </td>
                                                     <td>
-                                                        {row.accuracy_report == 1 ? (
-                                                            <FaCheck className='textsuccess fs-4' />
-                                                        ) : row.accuracy_report == 0 ? (
-                                                            <FaTimes className='textdanger fs-4' />
-                                                        ) : (
-                                                            '-'
-                                                        )}
+                                                        {row.accuracy_report === null
+                                                            ? "-"
+                                                            : row.accuracy_report === 1
+                                                                ? <FaCheck className="textsuccess fs-4" />
+                                                                : <FaTimes className="textdanger fs-4" />}
                                                     </td>
                                                     <td>
-                                                        {row.demand_dsm_report == 1 ? (
-                                                            <FaCheck className='textsuccess fs-4' />
-                                                        ) : row.demand_dsm_report == 0 ? (
-                                                            <FaTimes className='textdanger fs-4' />
-                                                        ) : (
-                                                            '-'
-                                                        )}
+                                                        {row.demand_dsm_report === null
+                                                            ? "-"
+                                                            : row.demand_dsm_report === 1
+                                                                ? <FaCheck className="textsuccess fs-4" />
+                                                                : <FaTimes className="textdanger fs-4" />}
                                                     </td>
                                                 </tr>
+
                                             ))}
                                     </tbody>
                                 </table>
-
                             </div>
                         </div>
                     </div>
 
-                    {/* Solar Forecast */}
                     <div className="row d-flex justify-content-center">
                         <div className="col-md-12 mt-4 rounded bg-white p-2">
                             <div className="table-responsive">
@@ -831,7 +553,6 @@ function Pending_Works() {
                     {/* ShiftB */}
 
 
-
                     {/* shiftC */}
                     <div className='row d-flex justify-content-center'>
                         <div className='col-md-12 mt-4 rounded bg-white p-2'>
@@ -846,26 +567,16 @@ function Pending_Works() {
                                         <tr>
                                             <th>Forecast</th>
                                             <th>Operation</th>
-                                            <th className='d-none' >Status</th>
-                                            {/* <th>Date</th> */}
-
+                                            <th>Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {forecastData.filter(entry => entry.status_value !== 1)
+                                        {filterByDate(forecastData).filter(entry => entry.status_value !== 1)
                                             .map((entry) => (
                                                 <tr key={entry.id}>
                                                     <td>{entry.forecast}</td>
                                                     <td>{entry.status_label}</td>
-                                                    <td className='d-none'>{entry.status_value === 1 ? <FaCheck className='textsuccess fs-4' /> : <FaTimes className='textdanger fs-4' />}</td>
-
-                                                    {/* <td className='text-uppercase'>
-                                                    {new Date(entry.created_at).toLocaleDateString('en-US', {
-                                                        year: 'numeric',
-                                                        month: 'long',
-                                                        day: 'numeric',
-                                                    })}
-                                                </td> */}
+                                                    <td>{entry.status_value === 1 ? <FaCheck className='textsuccess fs-4' /> : <FaTimes className='textdanger fs-4' />}</td>
                                                 </tr>
                                             ))}
                                     </tbody>

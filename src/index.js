@@ -69,7 +69,7 @@ import Pending_Works from './PendingWorks';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Router basename="/Leap_Green"> {/* Add basename for GitHub Pages */}
+    <Router basename="/Leap_Green"> 
       <Routes>
         <Route path='/' element={<Login />} />
         <Route path='/Dashboard' element={<Dashboard />} />

@@ -39,7 +39,7 @@ function ShiftB() {
     const handleSubmit5 = async (e) => {
         try {
             // Make the POST request
-            const response = await axios.post('http://localhost:5000/shiftB_remarks', {
+            const response = await axios.post('http://localhost:5001/shiftB_remarks', {
                 work_description: workDescription,
                 work_status: workStatus,
             });
@@ -127,7 +127,7 @@ function ShiftB() {
     useEffect(() => {
         const fetchLastForecast = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/shiftB_forecastlast');
+                const response = await axios.get('http://localhost:5001/shiftB_forecastlast');
                 const lastForecast = response.data;
 
                 if (lastForecast.length > 0) {
@@ -192,7 +192,7 @@ function ShiftB() {
     // Submit new forecast data
     const handleSubmit1 = async () => {
         try {
-            await axios.post('http://localhost:5000/shiftB_forecast', forecastData);
+            await axios.post('http://localhost:5001/shiftB_forecast', forecastData);
         } catch (error) {
             console.error('Error saving data:', error);
         }
@@ -306,7 +306,7 @@ function ShiftB() {
     // }, []);
 
     useEffect(() => {
-        axios.get('http://localhost:5000/shiftB_demandforecastlast')
+        axios.get('http://localhost:5001/shiftB_demandforecastlast')
             .then(response => {
                 const forecastEntries = response.data;
                 const updatedForecastData = {
@@ -356,7 +356,7 @@ function ShiftB() {
 
     const handleSubmit2 = () => {
         axios
-            .post("http://localhost:5000/shiftB_demandforecast", demandForecastData)
+            .post("http://localhost:5001/shiftB_demandforecast", demandForecastData)
             .then(() => {
                 console.log("Data saved successfully");
             })
@@ -384,7 +384,7 @@ function ShiftB() {
     });
     useEffect(() => {
         // Fetch the previous entry for solar forecast
-        fetch('http://localhost:5000/shiftB_solarforecastlast')
+        fetch('http://localhost:5001/shiftB_solarforecastlast')
             .then(response => response.json())
             .then(data => {
                 // Set the fetched data to solarForecast state
@@ -402,7 +402,7 @@ function ShiftB() {
     // Submit data
     const handleSubmit3 = async () => {
         try {
-            const response = await axios.post('http://localhost:5000/shiftB_solarforecast', solarForecast);
+            const response = await axios.post('http://localhost:5001/shiftB_solarforecast', solarForecast);
         } catch (error) {
             console.error('Error submitting data:', error);
             alert('Error submitting data');
@@ -525,7 +525,7 @@ function ShiftB() {
     const [remarksData, setRemarksData] = useState([]);
     useEffect(() => {
         // Fetch data from the backend
-        fetch('http://localhost:5000/shiftA_remarkslast') // Assuming you have a GET route to fetch the data
+        fetch('http://localhost:5001/shiftA_remarkslast') // Assuming you have a GET route to fetch the data
             .then((response) => response.json())
             .then((fetchedData) => {
                 setRemarksData(fetchedData); // Store the fetched data in state
