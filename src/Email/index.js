@@ -268,7 +268,7 @@ function Email() {
                                     <table className="table table-bordered text-center mt-5">
                                         <thead>
                                             <tr className='bg-success'>
-                                                <th className='fs-3 whitetext text-start' colSpan={4}>Current Shift Email Verificationsss</th>
+                                                <th className='fs-3 whitetext text-start' colSpan={4}>Current Shift Email Verificationssss</th>
                                             </tr>
                                             <tr className='bg-light'>
                                                 <th>Revision</th>
