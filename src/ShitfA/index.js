@@ -1123,8 +1123,8 @@ function ShiftA() {
                                             <th scope="row">{index + 1}</th>
                                             <td>{row.operation}</td>
                                             <td>
-                                                <input
-                                                    className="form-check-input"
+                                                <input 
+                                                    className="form-check-input cursor-pointer"
                                                     type="checkbox"
                                                     checked={row.TN}
                                                     onChange={() => handleCheckboxChange(index, 'TN')}
@@ -1132,7 +1132,7 @@ function ShiftA() {
                                             </td>
                                             <td>
                                                 <input
-                                                    className="form-check-input"
+                                                    className="form-check-input cursor-pointer"
                                                     type="checkbox"
                                                     checked={row.RJ}
                                                     onChange={() => handleCheckboxChange(index, 'RJ')}
@@ -1140,7 +1140,7 @@ function ShiftA() {
                                             </td>
                                             <td>
                                                 <input
-                                                    className="form-check-input"
+                                                    className="form-check-input cursor-pointer"
                                                     type="checkbox"
                                                     checked={row.MP}
                                                     onChange={() => handleCheckboxChange(index, 'MP')}
@@ -1148,7 +1148,7 @@ function ShiftA() {
                                             </td>
                                             <td>
                                                 <input
-                                                    className="form-check-input"
+                                                    className="form-check-input cursor-pointer"
                                                     type="checkbox"
                                                     checked={row.MH}
                                                     onChange={() => handleCheckboxChange(index, 'MH')}
@@ -1354,76 +1354,76 @@ function ShiftA() {
                                     <tr>
                                         <th scope="row">TN Forecast 8:00 Hours</th>
                                         <td>
-                                            <input className="form-check-input" type="checkbox" checked={forecastData.tnForecast800.ourGroup} onChange={(e) => handleCheckboxChange1(e, 'tnForecast800', 'ourGroup')} /> Our Group
+                                            <input className="form-check-input cursor-pointer" type="checkbox" checked={forecastData.tnForecast800.ourGroup} onChange={(e) => handleCheckboxChange1(e, 'tnForecast800', 'ourGroup')} /> Our Group
                                         </td>
                                         <td>
-                                            <input className="form-check-input" type="checkbox" checked={forecastData.tnForecast800.ldc} onChange={(e) => handleCheckboxChange1(e, 'tnForecast800', 'ldc')} /> LDC
+                                            <input className="form-check-input cursor-pointer" type="checkbox" checked={forecastData.tnForecast800.ldc} onChange={(e) => handleCheckboxChange1(e, 'tnForecast800', 'ldc')} /> LDC
                                         </td>
                                         <td>
-                                            <input className="form-check-input" type="checkbox" checked={forecastData.tnForecast800.mail} onChange={(e) => handleCheckboxChange1(e, 'tnForecast800', 'mail')} /> Mail
+                                            <input className="form-check-input cursor-pointer" type="checkbox" checked={forecastData.tnForecast800.mail} onChange={(e) => handleCheckboxChange1(e, 'tnForecast800', 'mail')} /> Mail
                                         </td>
                                     </tr>
                                     <tr>
                                         <th scope="row">TN Forecast 9:00 Hours</th>
                                         <td>
-                                            <input className="form-check-input" type="checkbox" checked={forecastData.tnForecast900.ourGroup} onChange={(e) => handleCheckboxChange1(e, 'tnForecast900', 'ourGroup')} /> Our Group
+                                            <input className="form-check-input cursor-pointer" type="checkbox" checked={forecastData.tnForecast900.ourGroup} onChange={(e) => handleCheckboxChange1(e, 'tnForecast900', 'ourGroup')} /> Our Group
                                         </td>
                                         <td>
-                                            <input className="form-check-input" type="checkbox" checked={forecastData.tnForecast900.mainGroup} onChange={(e) => handleCheckboxChange1(e, 'tnForecast900', 'mainGroup')} /> Main Group
+                                            <input className="form-check-input cursor-pointer" type="checkbox" checked={forecastData.tnForecast900.mainGroup} onChange={(e) => handleCheckboxChange1(e, 'tnForecast900', 'mainGroup')} /> Main Group
                                         </td>
                                         <td>
-                                            <input className="form-check-input" type="checkbox" checked={forecastData.tnForecast900.mail} onChange={(e) => handleCheckboxChange1(e, 'tnForecast900', 'mail')} /> Mail
+                                            <input className="form-check-input cursor-pointer" type="checkbox" checked={forecastData.tnForecast900.mail} onChange={(e) => handleCheckboxChange1(e, 'tnForecast900', 'mail')} /> Mail
                                         </td>
                                     </tr>
                                     <tr>
                                         <th scope="row">RJ Forecast 9:00 Hours</th>
                                         <td>
-                                            <input className="form-check-input" type="checkbox" checked={forecastData.rjForecast900.ourGroup} onChange={(e) => handleCheckboxChange1(e, 'rjForecast900', 'ourGroup')} /> Our Group
+                                            <input className="form-check-input cursor-pointer" type="checkbox" checked={forecastData.rjForecast900.ourGroup} onChange={(e) => handleCheckboxChange1(e, 'rjForecast900', 'ourGroup')} /> Our Group
                                         </td>
                                         <td>
-                                            <input className="form-check-input" type="checkbox" checked={forecastData.rjForecast900.ldc} onChange={(e) => handleCheckboxChange1(e, 'rjForecast900', 'ldc')} /> Main Group
+                                            <input className="form-check-input cursor-pointer" type="checkbox" checked={forecastData.rjForecast900.ldc} onChange={(e) => handleCheckboxChange1(e, 'rjForecast900', 'ldc')} /> Main Group
                                         </td>
                                         <td>
-                                            <input className="form-check-input" type="checkbox" checked={forecastData.rjForecast900.mail} onChange={(e) => handleCheckboxChange1(e, 'rjForecast900', 'mail')} /> Mail
+                                            <input className="form-check-input cursor-pointer" type="checkbox" checked={forecastData.rjForecast900.mail} onChange={(e) => handleCheckboxChange1(e, 'rjForecast900', 'mail')} /> Mail
                                         </td>
                                     </tr>
                                     <tr>
                                         <th scope="row">TN Forecast 13:00 Hours</th>
                                         <td>
-                                            <input className="form-check-input" type="checkbox" checked={forecastData.tnForecast1300.ourGroup} onChange={(e) => handleCheckboxChange1(e, 'tnForecast1300', 'ourGroup')} /> Our Group
+                                            <input className="form-check-input cursor-pointer" type="checkbox" checked={forecastData.tnForecast1300.ourGroup} onChange={(e) => handleCheckboxChange1(e, 'tnForecast1300', 'ourGroup')} /> Our Group
                                         </td>
                                         <td>
-                                            <input className="form-check-input" type="checkbox" checked={forecastData.tnForecast1300.ldc} onChange={(e) => handleCheckboxChange1(e, 'tnForecast1300', 'ldc')} /> LDC
+                                            <input className="form-check-input cursor-pointer" type="checkbox" checked={forecastData.tnForecast1300.ldc} onChange={(e) => handleCheckboxChange1(e, 'tnForecast1300', 'ldc')} /> LDC
                                         </td>
                                         <td>
-                                            <input className="form-check-input" type="checkbox" checked={forecastData.tnForecast1300.mail} onChange={(e) => handleCheckboxChange1(e, 'tnForecast1300', 'mail')} /> Mail
+                                            <input className="form-check-input cursor-pointer" type="checkbox" checked={forecastData.tnForecast1300.mail} onChange={(e) => handleCheckboxChange1(e, 'tnForecast1300', 'mail')} /> Mail
                                         </td>
                                     </tr>
                                     <tr>
                                         <th scope="row">TANGEDCO</th>
                                         <td>
-                                            <input className="form-check-input" type="checkbox" checked={forecastData.tangedco.tangedco} onChange={(e) => handleCheckboxChange1(e, 'tangedco', 'tangedco')} /> TANGEDCO
+                                            <input className="form-check-input cursor-pointer" type="checkbox" checked={forecastData.tangedco.tangedco} onChange={(e) => handleCheckboxChange1(e, 'tangedco', 'tangedco')} /> TANGEDCO
                                         </td>
                                         <td colSpan="2"></td>
                                     </tr>
                                     <tr>
                                         <th scope="row">TECA</th>
                                         <td>
-                                            <input className="form-check-input" type="checkbox" checked={forecastData.teca.teca} onChange={(e) => handleCheckboxChange1(e, 'teca', 'teca')} /> TECA
+                                            <input className="form-check-input cursor-pointer" type="checkbox" checked={forecastData.teca.teca} onChange={(e) => handleCheckboxChange1(e, 'teca', 'teca')} /> TECA
                                         </td>
                                         <td colSpan="2"></td>
                                     </tr>
                                     <tr>
                                         <th scope="row">TN 15 Days Forecast</th>
                                         <td>
-                                            <input className="form-check-input" type="checkbox" checked={forecastData.tn15DaysForecast.tn15Days} onChange={(e) => handleCheckboxChange1(e, 'tn15DaysForecast', 'tn15Days')} /> TN 15 Days
+                                            <input className="form-check-input cursor-pointer" type="checkbox" checked={forecastData.tn15DaysForecast.tn15Days} onChange={(e) => handleCheckboxChange1(e, 'tn15DaysForecast', 'tn15Days')} /> TN 15 Days
                                         </td>
                                         <td colSpan="2"></td>
                                     </tr>
                                     <tr>
                                         <th scope="row">RJ 15 Days Forecast</th>
                                         <td>
-                                            <input className="form-check-input" type="checkbox" checked={forecastData.rj15DaysForecast.rj15Days} onChange={(e) => handleCheckboxChange1(e, 'rj15DaysForecast', 'rj15Days')} /> RJ 15 Days
+                                            <input className="form-check-input cursor-pointer" type="checkbox" checked={forecastData.rj15DaysForecast.rj15Days} onChange={(e) => handleCheckboxChange1(e, 'rj15DaysForecast', 'rj15Days')} /> RJ 15 Days
                                         </td>
                                         <td colSpan="2"></td>
                                     </tr>
@@ -1550,8 +1550,8 @@ function ShiftA() {
                     </div>
                 </div> */}
 
-                <div className='row border m-1'>
-                    <div className='col-md-8 m-1'>
+                <div className='row'>
+                    <div className='col-md-12'>
                         <div className="table-responsive">
                             <table className="table table-bordered">
                                 <thead>
@@ -1582,7 +1582,7 @@ function ShiftA() {
                                             <th scope="row">{report.reportName}</th>
                                             <td>
                                                 <input
-                                                    className="form-check-input"
+                                                    className="form-check-input cursor-pointer"
                                                     type="checkbox"
                                                     checked={report.TN}
                                                     onChange={() => handleCheckboxChange2(index, 'TN')}
@@ -1855,7 +1855,7 @@ function ShiftA() {
                             <div className='text-end'>
                                 <div className='text-end'>
                                     <div className='text-end'>
-                                        <button onClick={handleSubmitAll} className="btn btn-success mb-3">Submit</button>
+                                        <button onClick={handleSubmitAll} className="btn btn-success mb-3 border border-success border-2">Submit</button>
                                     </div>
                                 </div>
 

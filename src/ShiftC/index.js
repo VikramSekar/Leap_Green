@@ -482,7 +482,7 @@ function ShiftC() {
                                         <th scope="row">TN Forecast 22:30 Hours</th>
                                         <td>
                                             <input
-                                                className="form-check-input"
+                                                className="form-check-input cursor-pointer"
                                                 type="checkbox"
                                                 checked={statusData.forecast1.ourGroup}
                                                 onChange={() => handleCheckboxChange('forecast1', 'ourGroup')}
@@ -490,7 +490,7 @@ function ShiftC() {
                                         </td>
                                         <td>
                                             <input
-                                                className="form-check-input"
+                                                className="form-check-input cursor-pointer"
                                                 type="checkbox"
                                                 checked={statusData.forecast1.ldc}
                                                 onChange={() => handleCheckboxChange('forecast1', 'ldc')}
@@ -498,7 +498,7 @@ function ShiftC() {
                                         </td>
                                         <td>
                                             <input
-                                                className="form-check-input"
+                                                className="form-check-input cursor-pointer"
                                                 type="checkbox"
                                                 checked={statusData.forecast1.mail}
                                                 onChange={() => handleCheckboxChange('forecast1', 'mail')}
@@ -509,7 +509,7 @@ function ShiftC() {
                                         <th scope="row">Day Ahead Schedule Upload</th>
                                         <td>
                                             <input
-                                                className="form-check-input"
+                                                className="form-check-input cursor-pointer"
                                                 type="checkbox"
                                                 checked={statusData.forecast2.samast}
                                                 onChange={() => handleCheckboxChange('forecast2', 'samast')}
@@ -522,7 +522,7 @@ function ShiftC() {
                                         <th scope="row">Day Ahead Schedule Mail</th>
                                         <td>
                                             <input
-                                                className="form-check-input"
+                                                className="form-check-input cursor-pointer"
                                                 type="checkbox"
                                                 checked={statusData.forecast3.customers}
                                                 onChange={() => handleCheckboxChange('forecast3', 'customers')}
@@ -535,7 +535,7 @@ function ShiftC() {
                                         <th scope="row">TN Model Selection</th>
                                         <td>
                                             <input
-                                                className="form-check-input"
+                                                className="form-check-input cursor-pointer"
                                                 type="checkbox"
                                                 checked={statusData.forecast4.intraday}
                                                 onChange={() => handleCheckboxChange('forecast4', 'intraday')}
@@ -543,7 +543,7 @@ function ShiftC() {
                                         </td>
                                         <td>
                                             <input
-                                                className="form-check-input"
+                                                className="form-check-input cursor-pointer"
                                                 type="checkbox"
                                                 checked={statusData.forecast4.dayAhead}
                                                 onChange={() => handleCheckboxChange('forecast4', 'dayAhead')}
@@ -859,7 +859,7 @@ function ShiftC() {
                             </table>
                             <div className='text-end'>
                                 {/* <button onClick={handleSubmit5} className="btn btn-success">Submit</button> */}
-                                <button onClick={handleSubmitAll} className="btn btn-success">Submit</button>
+                                <button onClick={handleSubmitAll} className="btn btn-success border  border-success border-2">Submit</button>
 
                             </div>
                         </div>

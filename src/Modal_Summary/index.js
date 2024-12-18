@@ -210,6 +210,7 @@ const NWPModelTable = () => {
     };
 
 
+
     function getRowBorderColor(modelName) {
         switch (modelName) {
             case "ARPEGE 25 & ICON 25":
@@ -240,7 +241,7 @@ const NWPModelTable = () => {
             <Header />
             <div className="container mt-4 border rounded">
 
-                {/* <div className='row d-flex justify-content-center d-none'>
+                <div className='row d-flex justify-content-center '>
                     <div className='col-md-12 mt-4'>
                         <div className='table-responsive'>
                             <table className="table table-bordered table-striped">
@@ -251,36 +252,29 @@ const NWPModelTable = () => {
                                     <tr>
                                         <th>Model Name</th>
                                         <th>UTC Update</th>
-                                        <th>Number of Days</th>
-                                        <th>Number of Files</th>
-                                        <th>D</th>
-                                        <th>E</th>
-                                        <th>FG</th>
-                                        <th>FT</th>
-                                        <th>Remarks</th>
+                                        <th className=''>D</th>
+                                        <th className=''>E</th>
+                                        <th className=''>FG</th>
+                                        <th className=''>FT</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {fetchmodels.map((fetching, index) => (
-
-                                        <tr key={index}>
-                                            <td>{fetching.modelName}</td>
-                                            <td>{fetching.utcUpdate}</td>
-                                            <td>{fetching.numOfDays}</td>
-                                            <td>{fetching.numOfFiles}</td>
-
-                                            <td>{fetching.d === 1 ? <FaCheck className='textsuccess fs-4' /> : <FaTimes className='textdanger fs-4' />}</td>
-                                            <td>{fetching.e === 1 ? <FaCheck className='textsuccess fs-4' /> : <FaTimes className='textdanger fs-4' />}</td>
-                                            <td>{fetching.fg === 1 ? <FaCheck className='textsuccess fs-4' /> : <FaTimes className='textdanger fs-4' />}</td>
-                                            <td>{fetching.pt === 1 ? <FaCheck className='textsuccess fs-4' /> : <FaTimes className='textdanger fs-4' />}</td>
-                                            <td>{fetching.remarks}</td>
-                                        </tr>
-                                    ))}
+                                    {fetchmodels.filter(fetching => fetching.d == 0 || fetching.e == 0 || fetching.fg == 0 || fetching.pt == 0)
+                                        .map((fetching, index) => (
+                                            <tr key={index}>
+                                                <td>{fetching.modelName}</td>
+                                                <td>{fetching.utcUpdate}</td>
+                                                <td className=''>{fetching.d === 1 ? <FaCheck className='textsuccess fs-4' /> : <FaTimes className='textdanger fs-4' />}</td>
+                                                <td className=''>{fetching.e === 1 ? <FaCheck className='textsuccess fs-4' /> : <FaTimes className='textdanger fs-4' />}</td>
+                                                <td className=''>{fetching.fg === 1 ? <FaCheck className='textsuccess fs-4' /> : <FaTimes className='textdanger fs-4' />}</td>
+                                                <td className=''>{fetching.pt === 1 ? <FaCheck className='textsuccess fs-4' /> : <FaTimes className='textdanger fs-4' />}</td>
+                                            </tr>
+                                        ))}
                                 </tbody>
                             </table>
                         </div>
                     </div>
-                </div> */}
+                </div>
 
                 <div className='row d-flex justify-content-center'>
                     <div className='col-md-12 mt-5'>
@@ -376,7 +370,6 @@ const NWPModelTable = () => {
                                                     className={`formRow ${getRowBorderColor(model.modelName)}`}
                                                     style={{ borderWidth: "2px", borderStyle: "solid" }}
                                                 >
-                                                    {/* Render modelName only for the first occurrence */}
                                                     {isFirstOccurrence && (
                                                         <td rowSpan={rowSpan}>
                                                             <input
@@ -416,7 +409,7 @@ const NWPModelTable = () => {
                                                             <input
                                                                 type="checkbox"
                                                                 name={key}
-                                                                className="form-check-input border border-white border-2"
+                                                                className="form-check-input border border-white border-2 cursor-pointer"
                                                                 checked={model[key]}
                                                                 onChange={(event) => handleChange(index, event)}
                                                             />
@@ -426,7 +419,7 @@ const NWPModelTable = () => {
                                                         <input
                                                             type="checkbox"
                                                             name="selectAll"
-                                                            className="form-check-input bg-success border"
+                                                            className="form-check-input bg-success border cursor-pointer"
                                                             checked={model.d && model.e && model.fg && model.pt}
                                                             onChange={(event) => handleSelectAllChange(index, event)}
                                                         />
@@ -465,7 +458,7 @@ const NWPModelTable = () => {
                                 </div> */}
 
                                 <div className='col-md-12 text-end'>
-                                    <button type="submit" className="btn btn-success mt-3 mb-3 fs-5 px-5">Submit</button>
+                                    <button type="submit" className="btn btn-success mt-3 mb-3 fs-5 px-5 border border-success border-2">Submit</button>
                                 </div>
                             </div>
 

@@ -8,15 +8,6 @@ import { Link } from 'react-router-dom';
 
 
 
-
-
-
-
-
-
-
-
-
 function Pending_Works() {
 
 
@@ -80,25 +71,39 @@ function Pending_Works() {
             .catch(error => console.error('Error fetching forecast data:', error));
     }, []);
 
-    const [solarForecast, setSolarForecast] = useState({
-        watson: false,
-        brookfields: false,
-        brookfieldsmail: false,
-        accuracyReport: false,
-        solarDsmReport: false,
-        actualUpdated: false,
-        actualNotUpdated: false,
-    });
+    // const [solarForecast, setSolarForecast] = useState({
+    //     watson: false,
+    //     brookfields: false,
+    //     brookfieldsmail: false,
+    //     accuracyReport: false,
+    //     solarDsmReport: false,
+    //     actualUpdated: false,
+    //     actualNotUpdated: false,
+    // });
+    // useEffect(() => {
+    //     // Fetch the previous entry for solar forecast
+    //     fetch('http://localhost:5001/shiftB_solarforecastlast')
+    //         .then(response => response.json())
+    //         .then(data => {
+    //             // Set the fetched data to solarForecast state
+    //             setSolarForecast(data);
+    //         })
+    //         .catch(error => console.error('Error fetching data:', error));
+    // }, []);
+
+    const [solarForecast, setSolarForecast] = useState([]);
     useEffect(() => {
-        // Fetch the previous entry for solar forecast
-        fetch('http://localhost:5001/shiftB_solarforecastlast')
-            .then(response => response.json())
-            .then(data => {
-                // Set the fetched data to solarForecast state
-                setSolarForecast(data);
-            })
-            .catch(error => console.error('Error fetching data:', error));
+        const fetchData = async () => {
+            try {
+                const response = await axios.get("http://localhost:5001/shiftB_solarforecastlast");
+                setSolarForecast(response.data);  // Directly set the data without modification
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
+        };
+        fetchData();
     }, []);
+
 
     const [forecastData, setForecastData] = useState([]);
     useEffect(() => {
@@ -134,8 +139,9 @@ function Pending_Works() {
                                 className="form-control border border-2 border-warning shadow-sm"
                                 value={selectedDate}
                                 onChange={(e) => setSelectedDate(e.target.value)}
-                                max={new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString().split('T')[0]}
+                                max={new Date().toISOString().split('T')[0]} // Set max to today's date
                             />
+
                         </div>
                     </div>
 
@@ -316,12 +322,12 @@ function Pending_Works() {
                                             <th>Main Group</th>
                                             <th>TANGEDCO</th>
                                             <th>TECA</th>
-                                            <th>TN 15 Days</th>
-                                            <th>RJ 15 Days</th>
+                                            {/* <th>TN 15 Days</th>
+                                            <th>RJ 15 Days</th> */}
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {filterByDate(forecasts).filter(forecast => forecast.our_group !== 1 || forecast.ldc !== 1 || forecast.mail !== 1 || forecast.main_group !== 1 || forecast.tangedco !== 1 || forecast.teca !== 1 || forecast.tn_15_days !== 1 || forecast.rj_15_days !== 1)
+                                        {filterByDate(forecasts).filter(forecast => forecast.our_group !== 1 || forecast.ldc !== 1 || forecast.mail !== 1 || forecast.main_group !== 1 || forecast.tangedco !== 1 || forecast.teca !== 1)
                                             .map((forecast) => (
                                                 <tr key={forecast.id}>
                                                     <td>{forecast.forecast_type}</td>
@@ -379,7 +385,7 @@ function Pending_Works() {
                                                             "-"
                                                         )}
                                                     </td>
-                                                    <td>
+                                                    {/* <td>
                                                         {forecast.tn_15_days == 1 ? (
                                                             <FaCheck className="textsuccess fs-4" />
                                                         ) : forecast.tn_15_days == 0 ? (
@@ -396,7 +402,7 @@ function Pending_Works() {
                                                         ) : (
                                                             "-"
                                                         )}
-                                                    </td>
+                                                    </td> */}
 
                                                 </tr>
                                             ))}
@@ -425,7 +431,7 @@ function Pending_Works() {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {forecastDataFetch.filter(row => row.tn !== 1 || row.our_group !== 1 || row.main_group !== 1 || row.accuracy_report !== 1 || row.demand_dsm_report !== 1)
+                                        {filterByDate(forecastDataFetch).filter(row => row.tn !== 1 || row.our_group !== 1 || row.main_group !== 1 || row.accuracy_report !== 1 || row.demand_dsm_report !== 1)
                                             .map((row, index) => (
                                                 <tr key={index}>
                                                     <td>{row.forecast_type}</td>
@@ -484,7 +490,7 @@ function Pending_Works() {
                                             </th>
                                         </tr>
                                         <tr>
-                                            <th>Watson</th>
+                                            <th>Watsun</th>
                                             <th>Brookfields</th>
                                             <th>Brookfield Mail</th>
                                             <th>Accuracy Report</th>
@@ -496,49 +502,49 @@ function Pending_Works() {
                                     <tbody>
                                         <tr>
                                             <td>
-                                                {solarForecast.watson === 1 ? (
+                                                {(solarForecast).watson === true ? (
                                                     <FaCheck className="textsuccess fs-4" />
                                                 ) : (
                                                     <FaTimes className="textdanger fs-4" />
                                                 )}
                                             </td>
                                             <td>
-                                                {solarForecast.brookfields === true ? (
+                                                {(solarForecast).brookfields === true ? (
                                                     <FaCheck className="textsuccess fs-4" />
                                                 ) : (
                                                     <FaTimes className="textdanger fs-4" />
                                                 )}
                                             </td>
                                             <td>
-                                                {solarForecast.brookfieldsmail === true ? (
+                                                {(solarForecast).brookfieldsmail === true ? (
                                                     <FaCheck className="textsuccess fs-4" />
                                                 ) : (
                                                     <FaTimes className="textdanger fs-4" />
                                                 )}
                                             </td>
                                             <td>
-                                                {solarForecast.accuracyReport === true ? (
+                                                {(solarForecast).accuracyReport === true ? (
                                                     <FaCheck className="textsuccess fs-4" />
                                                 ) : (
                                                     <FaTimes className="textdanger fs-4" />
                                                 )}
                                             </td>
                                             <td>
-                                                {solarForecast.solarDsmReport === true ? (
+                                                {(solarForecast).solarDsmReport === true ? (
                                                     <FaCheck className="textsuccess fs-4" />
                                                 ) : (
                                                     <FaTimes className="textdanger fs-4" />
                                                 )}
                                             </td>
                                             <td>
-                                                {solarForecast.actualUpdated === true ? (
+                                                {(solarForecast).actualUpdated === true ? (
                                                     <FaCheck className="textsuccess fs-4" />
                                                 ) : (
                                                     <FaTimes className="textdanger fs-4" />
                                                 )}
                                             </td>
                                             <td>
-                                                {solarForecast.actualNotUpdated === true ? (
+                                                {(solarForecast).actualNotUpdated === true ? (
                                                     <FaCheck className="textsuccess fs-4" />
                                                 ) : (
                                                     <FaTimes className="textdanger fs-4" />

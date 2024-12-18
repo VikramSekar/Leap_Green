@@ -110,8 +110,6 @@ function ShiftB() {
         rjForecast2100: { ourGroup: false, ldc: false, mail: false },
         tangedco: { tangedco: false },
         teca: { teca: false },
-        tn15DaysForecast: { tn15Days: false },
-        rj15DaysForecast: { rj15Days: false },
     });
     // Handle checkbox changes
     const handleCheckboxChange1 = (event, forecastType, field) => {
@@ -374,7 +372,7 @@ function ShiftB() {
 
 
     const [solarForecast, setSolarForecast] = useState({
-        watson: false,
+        watsun: false,
         brookfields: false,
         brookfieldsmail: false,
         accuracyReport: false,
@@ -737,7 +735,7 @@ function ShiftB() {
                                         <th scope="row">TN Forecast 17:00 Hours</th>
                                         <td>
                                             <input
-                                                className="form-check-input"
+                                                className="form-check-input cursor-pointer"
                                                 type="checkbox"
                                                 checked={forecastData.tnForecast1700.ourGroup}
                                                 onChange={(e) => handleCheckboxChange1(e, "tnForecast1700", "ourGroup")}
@@ -745,7 +743,7 @@ function ShiftB() {
                                         </td>
                                         <td>
                                             <input
-                                                className="form-check-input"
+                                                className="form-check-input cursor-pointer"
                                                 type="checkbox"
                                                 checked={forecastData.tnForecast1700.ldc}
                                                 onChange={(e) => handleCheckboxChange1(e, "tnForecast1700", "ldc")}
@@ -753,7 +751,7 @@ function ShiftB() {
                                         </td>
                                         <td>
                                             <input
-                                                className="form-check-input"
+                                                className="form-check-input cursor-pointer"
                                                 type="checkbox"
                                                 checked={forecastData.tnForecast1700.mail}
                                                 onChange={(e) => handleCheckboxChange1(e, "tnForecast1700", "mail")}
@@ -764,7 +762,7 @@ function ShiftB() {
                                         <th scope="row">TN Forecast 21:00 Hours</th>
                                         <td>
                                             <input
-                                                className="form-check-input"
+                                                className="form-check-input cursor-pointer"
                                                 type="checkbox"
                                                 checked={forecastData.tnForecast2100.ourGroup}
                                                 onChange={(e) => handleCheckboxChange1(e, "tnForecast2100", "ourGroup")}
@@ -772,7 +770,7 @@ function ShiftB() {
                                         </td>
                                         <td>
                                             <input
-                                                className="form-check-input"
+                                                className="form-check-input cursor-pointer"
                                                 type="checkbox"
                                                 checked={forecastData.tnForecast2100.mainGroup}
                                                 onChange={(e) => handleCheckboxChange1(e, "tnForecast2100", "mainGroup")}
@@ -780,7 +778,7 @@ function ShiftB() {
                                         </td>
                                         <td>
                                             <input
-                                                className="form-check-input"
+                                                className="form-check-input cursor-pointer"
                                                 type="checkbox"
                                                 checked={forecastData.tnForecast2100.mail}
                                                 onChange={(e) => handleCheckboxChange1(e, "tnForecast2100", "mail")}
@@ -791,7 +789,7 @@ function ShiftB() {
                                         <th scope="row">RJ Forecast 21:00 Hours</th>
                                         <td>
                                             <input
-                                                className="form-check-input"
+                                                className="form-check-input cursor-pointer"
                                                 type="checkbox"
                                                 checked={forecastData.rjForecast2100.ourGroup}
                                                 onChange={(e) => handleCheckboxChange1(e, "rjForecast2100", "ourGroup")}
@@ -799,7 +797,7 @@ function ShiftB() {
                                         </td>
                                         <td>
                                             <input
-                                                className="form-check-input"
+                                                className="form-check-input cursor-pointer"
                                                 type="checkbox"
                                                 checked={forecastData.rjForecast2100.ldc}
                                                 onChange={(e) => handleCheckboxChange1(e, "rjForecast2100", "ldc")}
@@ -807,7 +805,7 @@ function ShiftB() {
                                         </td>
                                         <td>
                                             <input
-                                                className="form-check-input"
+                                                className="form-check-input cursor-pointer"
                                                 type="checkbox"
                                                 checked={forecastData.rjForecast2100.mail}
                                                 onChange={(e) => handleCheckboxChange1(e, "rjForecast2100", "mail")}
@@ -818,7 +816,7 @@ function ShiftB() {
                                         <th scope="row">TANGEDCO</th>
                                         <td>
                                             <input
-                                                className="form-check-input"
+                                                className="form-check-input cursor-pointer"
                                                 type="checkbox"
                                                 checked={forecastData.tangedco.tangedco}
                                                 onChange={(e) => handleCheckboxChange1(e, "tangedco", "tangedco")}
@@ -831,7 +829,7 @@ function ShiftB() {
                                         <th scope="row">TECA</th>
                                         <td>
                                             <input
-                                                className="form-check-input"
+                                                className="form-check-input cursor-pointer"
                                                 type="checkbox"
                                                 checked={forecastData.teca.teca}
                                                 onChange={(e) => handleCheckboxChange1(e, "teca", "teca")}
@@ -1015,7 +1013,7 @@ function ShiftB() {
                                         <th scope="row">DEMAND ZYGRIB</th>
                                         <td>
                                             <input
-                                                className="form-check-input"
+                                                className="form-check-input cursor-pointer"
                                                 type="checkbox"
                                                 checked={demandForecastData.demandZygrib.tn}
                                                 onChange={(e) => handleCheckboxChange2(e, "demandZygrib", "tn")}
@@ -1027,7 +1025,7 @@ function ShiftB() {
                                         <th scope="row">TN Demand Forecast 18:00 Hours</th>
                                         <td>
                                             <input
-                                                className="form-check-input"
+                                                className="form-check-input cursor-pointer"
                                                 type="checkbox"
                                                 checked={demandForecastData.tnDemandForecast1800.ourGroup}
                                                 onChange={(e) => handleCheckboxChange2(e, "tnDemandForecast1800", "ourGroup")}
@@ -1035,7 +1033,7 @@ function ShiftB() {
                                         </td>
                                         <td>
                                             <input
-                                                className="form-check-input"
+                                                className="form-check-input cursor-pointer"
                                                 type="checkbox"
                                                 checked={demandForecastData.tnDemandForecast1800.mainGroup}
                                                 onChange={(e) => handleCheckboxChange2(e, "tnDemandForecast1800", "mainGroup")}
@@ -1046,7 +1044,7 @@ function ShiftB() {
                                         <th scope="row">Demand Reports</th>
                                         <td>
                                             <input
-                                                className="form-check-input"
+                                                className="form-check-input cursor-pointer"
                                                 type="checkbox"
                                                 checked={demandForecastData.demandReports.accuracyReport}
                                                 onChange={(e) => handleCheckboxChange2(e, "demandReports", "accuracyReport")}
@@ -1054,7 +1052,7 @@ function ShiftB() {
                                         </td>
                                         <td>
                                             <input
-                                                className="form-check-input"
+                                                className="form-check-input cursor-pointer"
                                                 type="checkbox"
                                                 checked={demandForecastData.demandReports.demandDsmReport}
                                                 onChange={(e) => handleCheckboxChange2(e, "demandReports", "demandDsmReport")}
@@ -1187,7 +1185,7 @@ function ShiftB() {
                                         <th scope="row">Solar Forecast</th>
                                         <td>
                                             <input
-                                                className="form-check-input"
+                                                className="form-check-input cursor-pointer"
                                                 type="checkbox"
                                                 name="watson"
                                                 checked={solarForecast.watson}
@@ -1200,7 +1198,7 @@ function ShiftB() {
                                         <th scope="row">Solar Forecast</th>
                                         <td>
                                             <input
-                                                className="form-check-input"
+                                                className="form-check-input cursor-pointer"
                                                 type="checkbox"
                                                 name="brookfields"
                                                 checked={solarForecast.brookfields}
@@ -1209,7 +1207,7 @@ function ShiftB() {
                                         </td>
                                         <td>
                                             <input
-                                                className="form-check-input"
+                                                className="form-check-input cursor-pointer"
                                                 type="checkbox"
                                                 name="brookfieldsmail"
                                                 checked={solarForecast.brookfieldsmail}
@@ -1221,7 +1219,7 @@ function ShiftB() {
                                         <th scope="row">Solar Reports - Brookfields</th>
                                         <td>
                                             <input
-                                                className="form-check-input"
+                                                className="form-check-input cursor-pointer"
                                                 type="checkbox"
                                                 name="accuracyReport"
                                                 checked={solarForecast.accuracyReport}
@@ -1230,7 +1228,7 @@ function ShiftB() {
                                         </td>
                                         <td>
                                             <input
-                                                className="form-check-input"
+                                                className="form-check-input cursor-pointer"
                                                 type="checkbox"
                                                 name="solarDsmReport"
                                                 checked={solarForecast.solarDsmReport}
@@ -1242,7 +1240,7 @@ function ShiftB() {
                                         <th scope="row">Brookfields Solar Actual</th>
                                         <td>
                                             <input
-                                                className="form-check-input"
+                                                className="form-check-input cursor-pointer"
                                                 type="checkbox"
                                                 name="actualUpdated"
                                                 checked={solarForecast.actualUpdated}
@@ -1251,7 +1249,7 @@ function ShiftB() {
                                         </td>
                                         <td>
                                             <input
-                                                className="form-check-input"
+                                                className="form-check-input cursor-pointer"
                                                 type="checkbox"
                                                 name="actualNotUpdated"
                                                 checked={solarForecast.actualNotUpdated}
@@ -1568,7 +1566,7 @@ function ShiftB() {
                                 </tbody>
                             </table>
                             <div className='text-end'>
-                                <button type="submit" onClick={handleSubmitAll} className="btn btn-success">Submit</button>
+                                <button type="submit" onClick={handleSubmitAll} className="btn btn-success border border-success border-2">Submit</button>
                             </div>
                         </div>
                     </div>

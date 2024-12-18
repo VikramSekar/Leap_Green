@@ -3,6 +3,7 @@ import Header from '../Header';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import Email from '../Email';
 
 
 function Dashboard() {
@@ -24,6 +25,7 @@ function Dashboard() {
             [name]: value,
         }));
     };
+
 
 
     const [formData, setFormData] = useState({
@@ -139,7 +141,6 @@ function Dashboard() {
 
 
 
-
     useEffect(() => {
         fetch('http://localhost:5001/shiftData')
             .then((response) => response.json())
@@ -164,6 +165,7 @@ function Dashboard() {
 
 
 
+
     return (
         <>
             <Header />
@@ -174,8 +176,9 @@ function Dashboard() {
                     <div className='row mt-5'>
                         <div className='col-md-12 text-end'>
                             <Link to={"/Pending_Works"} className='btn btn-danger border border-2 border-danger whitetext pendingbtn'>Show Pending Works</Link>
-
                         </div>
+
+
                     </div>
 
 
@@ -193,8 +196,6 @@ function Dashboard() {
                                             <tr>
                                                 <th>Shift</th>
                                                 <th>Taken Over By</th>
-                                                {/* <th>Handed Over To</th> */}
-                                                {/* <th>Completed Work Description</th> */}
                                                 <th>Pending Work Description</th>
                                                 <th>Date</th>
                                             </tr>
@@ -204,8 +205,6 @@ function Dashboard() {
                                                 <tr key={index}>
                                                     <td>{item.shift}</td>
                                                     <td>{item.name}</td>
-                                                    {/* <td>{item.handed_over_to}</td> */}
-                                                    {/* <td>{item.completed_comments}</td> */}
                                                     <td>{item.pending_comments}</td>
                                                     <td className='text-uppercase'>
                                                         {new Date(item.created_at).toLocaleDateString('en-US', {
@@ -332,7 +331,7 @@ function Dashboard() {
                                             {Object.keys(formData).map((pass) => (
                                                 <tr key={pass}>
                                                     <td>{pass}</td>
-                                                    <td>
+                                                    <td className=''>
                                                         <div className='d-md-flex d-lg-flex flex-wrap'>
                                                             {[
                                                                 "Meteoblue Basic", "ICON 13km 10m", "GFS 25km 10m", "WRF 3km 10m",
@@ -343,17 +342,17 @@ function Dashboard() {
                                                             ].map((modelName) => (
                                                                 <div
                                                                     key={modelName}
-                                                                    className="form-check"
+                                                                    className="form-check "
                                                                     style={{ width: '25%' }}
                                                                 >
                                                                     <input
                                                                         type="checkbox"
-                                                                        className="form-check-input"
+                                                                        className="form-check-input cursor-pointer"
                                                                         id={`${pass}-${modelName}`}
                                                                         checked={formData[pass].model.includes(modelName)}
                                                                         onChange={() => handleCheckboxChange(pass, modelName)}
                                                                     />
-                                                                    <label className="form-check-label m-1" htmlFor={`${pass}-${modelName}`}>{modelName}</label>
+                                                                    <label className="form-check-label m-1 cursor-pointer" htmlFor={`${pass}-${modelName}`}>{modelName}</label>
                                                                 </div>
                                                             ))}
                                                         </div>
@@ -371,12 +370,12 @@ function Dashboard() {
                                                                     >
                                                                         <input
                                                                             type="checkbox"
-                                                                            className="form-check-input"
+                                                                            className="form-check-input cursor-pointer"
                                                                             id={`${pass}-${correctionName}`}
                                                                             checked={formData[pass].model.includes(correctionName)}
                                                                             onChange={() => handleCheckboxChange(pass, correctionName)}
                                                                         />
-                                                                        <label className="form-check-label m-1" htmlFor={`${pass}-${correctionName}`}>{correctionName}</label>
+                                                                        <label className="form-check-label m-1 cursor-pointer" htmlFor={`${pass}-${correctionName}`}>{correctionName}</label>
                                                                     </div>
                                                                 ))}
                                                             </div>
@@ -400,14 +399,16 @@ function Dashboard() {
                                     </table>
                                 </div>
                                 <div className='text-end'>
-                                    <button type="submit" className="btn btn-success me-2 px-5 fs-5 mb-3 mt-3">Submit</button>
+                                    <button type="submit" className="btn btn-success me-2 px-5 fs-5 mb-3 mt-3 border border-2 border-success">Submit</button>
                                 </div>
                             </form>
                         </div>
                     </div>
-                    
+
                 </div>
-            </section>
+            </section >
+
+
         </>
     );
 }
