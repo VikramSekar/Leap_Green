@@ -189,7 +189,7 @@ function Email() {
     useEffect(() => {
         const fetchEmails = async () => {
             try {
-                const response = await axios.get('https://172.16.4.224:5001/fetch-emails');
+                const response = await axios.get('http://localhost:5001/fetch-emails');
                 const fetchedEmails = response.data;
 
                 // Update formData based on verification status from backend
@@ -242,10 +242,10 @@ function Email() {
         if (!isConfirmed) return;
         e.preventDefault();
         try {
-            const response = await axios.post('https://172.16.4.224:5001/save-emails', formData);
+            const response = await axios.post('http://localhost:5001/save-emails', formData);
             if (response.status === 200) {
                 alert("Emails saved successfully!");
-                // window.location.reload();
+                window.location.reload();
                 setFormData(initialFormData); // Reset form data
             } else {
                 alert("Error saving emails.");
