@@ -157,7 +157,7 @@ function Pending_Works() {
                                         <tr>
                                             <th scope="col">Operations</th>
                                             <th scope="col">TN</th>
-                                            <th scope="col">RJ</th>
+                                            {/* <th scope="col">RJ</th> */}
 
                                         </tr>
                                     </thead>
@@ -168,7 +168,7 @@ function Pending_Works() {
                                                 <tr key={index}>
                                                     <td>{row.operation}</td>
                                                     <td>{row.TN === 1 ? <FaCheck className="textsuccess fs-4" /> : <FaTimes className="textdanger fs-4" />}</td>
-                                                    <td>{row.RJ === 1 ? <FaCheck className="textsuccess fs-4" /> : <FaTimes className="textdanger fs-4" />}</td>
+                                                    {/* <td>{row.RJ === 1 ? <FaCheck className="textsuccess fs-4" /> : <FaTimes className="textdanger fs-4" />}</td> */}
                                                 </tr>
                                             ))}
                                     </tbody>
