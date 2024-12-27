@@ -238,9 +238,9 @@ function Dashboard() {
                                                 <td className='p-5'>
                                                     <select className="form-control bg-light text-dark" name="shift" value={shiftData.shift} onChange={handleShiftChange} required>
                                                         <option value="">Select Shift <span className="textdanger">*</span></option>
-                                                        <option value="Shift A">Shift A (06:00 to 14:00)</option>
-                                                        <option value="Shift B">Shift B (14:00 to 22:00)</option>
-                                                        <option value="Shift C">Shift C (22:00 to 06:00)</option>
+                                                        <option value="Shift A"> A (06:00 to 14:00)</option>
+                                                        <option value="Shift B"> B (14:00 to 22:00)</option>
+                                                        <option value="Shift C"> C (22:00 to 06:00)</option>
                                                     </select>
                                                 </td>
                                                 <td><textarea className="form-control" name="name" placeholder="Taken Over By..." value={shiftData.name} onChange={handleShiftChange} /></td>

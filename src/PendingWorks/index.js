@@ -14,19 +14,28 @@ function Pending_Works() {
     const [selectedDate, setSelectedDate] = useState('');
 
     // Filter data by selected date
+    // const filterByDate = (entries) => {
+    //     if (!selectedDate) return entries; // Return all if no date selected
+    //     return entries.filter(entry =>
+    //         new Date(entry.created_at).toISOString().slice(0, 10) === selectedDate
+    //     );
+    // };
+
     const filterByDate = (entries) => {
-        if (!selectedDate) return entries; // Return all if no date selected
+        const today = new Date().toISOString().slice(0, 10); // Get today's date in 'YYYY-MM-DD' format
+        const dateToFilter = selectedDate || today; // Use selectedDate if available; otherwise, use today's date
+
         return entries.filter(entry =>
-            new Date(entry.created_at).toISOString().slice(0, 10) === selectedDate
+            new Date(entry.created_at).toISOString().slice(0, 10) === dateToFilter
         );
     };
 
+
     const [data, setData] = useState([]);
     useEffect(() => {
-        // Fetch the last submitted data on component mount
-        axios.get('http://localhost:5001/shiftA_preworkstatuslast')
+        axios.get('http://localhost:5001/shiftA_preworkstatusdate')
             .then(response => {
-                setData(response.data); // Populate the table with the last entry
+                setData(response.data);
             })
             .catch(error => console.error('Error fetching data:', error));
     }, []);
@@ -34,7 +43,7 @@ function Pending_Works() {
     const [preForecast, setPreForecast] = useState([]);
     useEffect(() => {
         // Fetch data when the component mounts
-        axios.get('http://localhost:5001/shiftA_forecastlast')
+        axios.get('http://localhost:5001/shiftA_forecastdate')
             .then(response => setPreForecast(response.data))
             .catch(error => console.error('Error fetching data:', error));
     }, []);
@@ -42,7 +51,7 @@ function Pending_Works() {
     const [preReport, setPreReport] = useState([]);
     useEffect(() => {
         // Fetch data when the component mounts
-        axios.get('http://localhost:5001/shiftA_reportlast')
+        axios.get('http://localhost:5001/shiftA_reportdate')
             .then(response => setPreReport(response.data))
             .catch(error => console.error('Error fetching data:', error));
     }, []);
@@ -52,7 +61,7 @@ function Pending_Works() {
     useEffect(() => {
         const fetchForecasts = async () => {
             try {
-                const response = await axios.get('http://localhost:5001/shiftB_forecastlast');
+                const response = await axios.get('http://localhost:5001/shiftB_forecastdate');
                 setForecasts(response.data);
             } catch (error) {
                 console.error('Error fetching forecasts:', error);
@@ -65,37 +74,17 @@ function Pending_Works() {
     const [forecastDataFetch, setForecastDataFetch] = useState([]);
     useEffect(() => {
         // Fetch data from the API
-        fetch('http://localhost:5001/shiftB_demandforecastlast')
+        fetch('http://localhost:5001/shiftB_demandforecastdate')
             .then(response => response.json())
             .then(data => setForecastDataFetch(data))
             .catch(error => console.error('Error fetching forecast data:', error));
     }, []);
 
-    // const [solarForecast, setSolarForecast] = useState({
-    //     watson: false,
-    //     brookfields: false,
-    //     brookfieldsmail: false,
-    //     accuracyReport: false,
-    //     solarDsmReport: false,
-    //     actualUpdated: false,
-    //     actualNotUpdated: false,
-    // });
-    // useEffect(() => {
-    //     // Fetch the previous entry for solar forecast
-    //     fetch('http://localhost:5001/shiftB_solarforecastlast')
-    //         .then(response => response.json())
-    //         .then(data => {
-    //             // Set the fetched data to solarForecast state
-    //             setSolarForecast(data);
-    //         })
-    //         .catch(error => console.error('Error fetching data:', error));
-    // }, []);
-
     const [solarForecast, setSolarForecast] = useState([]);
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get("http://localhost:5001/shiftB_solarforecastlast");
+                const response = await axios.get("http://localhost:5001/shiftB_solarforecastdate");
                 setSolarForecast(response.data);  // Directly set the data without modification
             } catch (error) {
                 console.error("Error fetching data:", error);
@@ -109,7 +98,7 @@ function Pending_Works() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get("http://localhost:5001/shiftC_forecaststatus/last");
+                const response = await axios.get("http://localhost:5001/shiftC_forecaststatus/date");
                 setForecastData(response.data);  // Directly set the data without modification
             } catch (error) {
                 console.error("Error fetching data:", error);

@@ -19,10 +19,10 @@ const NWPModelTable = () => {
         { modelName: 'ICON 13', utcUpdate: '06', numOfDays: '8', numOfFiles: '8', d: false, e: false, fg: false, pt: false, remarks: '' },
         { modelName: 'ICON 13', utcUpdate: '12', numOfDays: '8', numOfFiles: '8', d: false, e: false, fg: false, pt: false, remarks: '' },
         { modelName: 'ICON 13', utcUpdate: '18', numOfDays: '8', numOfFiles: '8', d: false, e: false, fg: false, pt: false, remarks: '' },
-        { modelName: 'ECMWF 9,10,100km', utcUpdate: '00', numOfDays: '2', numOfFiles: '23', d: false, e: false, fg: false, pt: false, remarks: '' },
-        { modelName: 'ECMWF 9,10,100km', utcUpdate: '06', numOfDays: '2', numOfFiles: '23', d: false, e: false, fg: false, pt: false, remarks: '' },
-        { modelName: 'ECMWF 9,10,100km', utcUpdate: '12', numOfDays: '2', numOfFiles: '23', d: false, e: false, fg: false, pt: false, remarks: '' },
-        { modelName: 'ECMWF 9,10,100km', utcUpdate: '18', numOfDays: '2', numOfFiles: '23', d: false, e: false, fg: false, pt: false, remarks: '' },
+        { modelName: 'ECMWF', utcUpdate: '00', numOfDays: '2', numOfFiles: '23', d: false, e: false, fg: false, pt: false, remarks: '' },
+        { modelName: 'ECMWF', utcUpdate: '06', numOfDays: '2', numOfFiles: '23', d: false, e: false, fg: false, pt: false, remarks: '' },
+        { modelName: 'ECMWF', utcUpdate: '12', numOfDays: '2', numOfFiles: '23', d: false, e: false, fg: false, pt: false, remarks: '' },
+        { modelName: 'ECMWF', utcUpdate: '18', numOfDays: '2', numOfFiles: '23', d: false, e: false, fg: false, pt: false, remarks: '' },
         { modelName: 'Meteoblue Basic', utcUpdate: '05', numOfDays: '7', numOfFiles: '1', d: false, e: false, fg: false, pt: false, remarks: '' },
         { modelName: 'Meteoblue Basic', utcUpdate: '16', numOfDays: '7', numOfFiles: '1', d: false, e: false, fg: false, pt: false, remarks: '' },
         { modelName: 'Meteoblue Basic 80mm', utcUpdate: '05', numOfDays: '7', numOfFiles: '1', d: false, e: false, fg: false, pt: false, remarks: '' },
@@ -221,7 +221,7 @@ const NWPModelTable = () => {
                 return "bordersuccess"; // Green
             case "ICON 13":
                 return "borderorange"; // Orange (light tone)
-            case "ECMWF 9,10,100km":
+            case "ECMWF":
                 return "bordercyan"; // Cyan (light tone)
             case "Meteoblue Basic":
                 return "borderteal"; // Teal
